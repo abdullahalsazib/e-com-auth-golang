@@ -10,3 +10,6 @@ After cloning repository, rename .env.example to .env
 
 To install dependency, run 
 ```go mod tidy```
+
+To run the application 
+```go run main.go```
