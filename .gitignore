@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode
+.vscode-test
+
+tmp/
+go.sum
+static/
+build/
