@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/neerajbg/go-gin-auth/database"
 
 	"github.com/joho/godotenv"
 )
@@ -13,9 +14,20 @@ func init() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("Error in loading env file.")
 	}
+
+	database.ConnectDB()
 }
 
 func main() {
+
+	// Close the db connection using defer clause
+	sqlDb, err := database.DBConn.DB()
+
+	if err != nil {
+		log.Println("Error in getting db conn.")
+	}
+
+	defer sqlDb.Close()
 
 	port := os.Getenv("port")
 
