@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/neerajbg/go-gin-auth/database"
+	"github.com/neerajbg/go-gin-auth/routes"
 
 	"github.com/joho/godotenv"
 )
@@ -39,11 +40,7 @@ func main() {
 
 	router := gin.New()
 
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"msg": "Hello World!",
-		})
-	})
+	routes.SetupRoutes(router)
 
 	log.Fatal(router.Run(":" + port))
 }
