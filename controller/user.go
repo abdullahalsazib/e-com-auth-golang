@@ -7,6 +7,7 @@ import (
 	"github.com/neerajbg/go-gin-auth/database"
 	"github.com/neerajbg/go-gin-auth/helper"
 	"github.com/neerajbg/go-gin-auth/model"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type formData struct {
@@ -18,9 +19,47 @@ type formData struct {
 func Login(c *gin.Context) {
 
 	returnObject := gin.H{
-		"status": "OK",
-		"msg":    "Login route",
+		"status": "",
+		"msg":    "Something went wrong.",
 	}
+
+	// 1. Check user for the given credentials
+
+	var formData formData
+
+	if err := c.ShouldBind(&formData); err != nil {
+		log.Println("Form binding error.")
+
+		c.JSON(400, returnObject)
+		return
+	}
+
+	var user model.User
+
+	database.DBConn.First(&user, "email=?", formData.Email)
+
+	if user.ID == 0 {
+		returnObject["msg"] = "User not found."
+
+		c.JSON(400, returnObject)
+		return
+	}
+
+	// Validate password
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(formData.Password))
+
+	if err != nil {
+		log.Println("Invalid password.")
+
+		returnObject["msg"] = "Password doesnt match"
+		c.JSON(401, returnObject)
+		return
+	}
+
+	// 2. Create token
+
+	returnObject["status"] = "OK"
+	returnObject["msg"] = "User authenticated"
 	c.JSON(200, returnObject)
 
 }
