@@ -58,6 +58,15 @@ func Login(c *gin.Context) {
 
 	// 2. Create token
 
+	token, err := helper.GenerateToken(user)
+
+	if err != nil {
+		returnObject["msg"] = "Token creation error."
+		c.JSON(401, returnObject)
+		return
+	}
+
+	returnObject["token"] = token
 	returnObject["status"] = "OK"
 	returnObject["msg"] = "User authenticated"
 	c.JSON(200, returnObject)
