@@ -111,4 +111,11 @@ func Register(c *gin.Context) {
 
 func Logout() {}
 
-func RefreshToken() {}
+func RefreshToken(c *gin.Context) {
+	returnObject := gin.H{
+		"status": "OK",
+		"msg":    "Refresh Token  route",
+	}
+
+	c.JSON(200, returnObject)
+}
