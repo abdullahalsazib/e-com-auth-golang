@@ -67,6 +67,7 @@ func Login(c *gin.Context) {
 	}
 
 	returnObject["token"] = token
+	returnObject["user"] = user
 	returnObject["status"] = "OK"
 	returnObject["msg"] = "User authenticated"
 	c.JSON(200, returnObject)
