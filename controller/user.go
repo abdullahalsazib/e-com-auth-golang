@@ -118,5 +118,48 @@ func RefreshToken(c *gin.Context) {
 		"msg":    "Refresh Token  route",
 	}
 
+	email, exists := c.Get("email")
+
+	if !exists {
+		log.Println("Email key not found.")
+
+		returnObject["msg"] = "Email not found."
+		c.JSON(401, returnObject)
+		return
+	}
+
+	var user model.User
+
+	database.DBConn.First(&user, "email=?", email)
+
+	if user.ID == 0 {
+		returnObject["msg"] = "User not found."
+
+		c.JSON(400, returnObject)
+		return
+	}
+
+	token, err := helper.GenerateToken(user)
+
+	if err != nil {
+		returnObject["msg"] = "Token creation error."
+		c.JSON(401, returnObject)
+		return
+	}
+
+	returnObject["token"] = token
+	returnObject["user"] = user
+
+	c.JSON(200, returnObject)
+}
+
+// User profile route
+func Profile(c *gin.Context) {
+
+	returnObject := gin.H{
+		"status": "OK",
+		"msg":    "User profile route. This is protected route accessible to authenticated user only.",
+	}
+
 	c.JSON(200, returnObject)
 }

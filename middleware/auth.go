@@ -27,6 +27,8 @@ func Authenticate(c *gin.Context) {
 		return
 	}
 
+	c.Set("email", claims.Email)
+
 	c.Next()
 
 }

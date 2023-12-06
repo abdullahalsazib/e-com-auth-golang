@@ -17,6 +17,7 @@ func SetupRoutes(r *gin.Engine) {
 	private.Use(middleware.Authenticate)
 
 	private.GET("/refreshtoken", controller.RefreshToken)
+	private.GET("/profile", controller.Profile)
 
 	// r.GET("/refreshtoken", controller.RefreshToken)
 }
