@@ -11,6 +11,7 @@ import (
 )
 
 type formData struct {
+	Name     string `json:name`
 	Email    string `json:email`
 	Password string `json:password`
 }
@@ -100,6 +101,7 @@ func Register(c *gin.Context) {
 	// Add formdata to model
 	var user model.User
 
+	user.Name = formData.Name
 	user.Email = formData.Email
 	user.Password = helper.HashPassword(formData.Password)
 
