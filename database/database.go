@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/neerajbg/go-gin-auth/model"
+	"github.com/abdullahalsazib/e-com-auth-golang/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

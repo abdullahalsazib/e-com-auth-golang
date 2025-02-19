@@ -3,16 +3,22 @@ package controller
 import (
 	"log"
 
+	"github.com/abdullahalsazib/e-com-auth-golang/database"
+	"github.com/abdullahalsazib/e-com-auth-golang/helper"
+	"github.com/abdullahalsazib/e-com-auth-golang/model"
 	"github.com/gin-gonic/gin"
-	"github.com/neerajbg/go-gin-auth/database"
-	"github.com/neerajbg/go-gin-auth/helper"
-	"github.com/neerajbg/go-gin-auth/model"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type formData struct {
 	Email    string `json:email`
 	Password string `json:password`
+}
+
+func Test(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "pong",
+	})
 }
 
 // Login handler

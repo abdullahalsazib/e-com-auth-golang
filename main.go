@@ -4,11 +4,10 @@ import (
 	"log"
 	"os"
 
+	"github.com/abdullahalsazib/e-com-auth-golang/database"
+	"github.com/abdullahalsazib/e-com-auth-golang/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/neerajbg/go-gin-auth/database"
-	"github.com/neerajbg/go-gin-auth/routes"
-
 	"github.com/joho/godotenv"
 )
 

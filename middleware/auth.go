@@ -3,8 +3,8 @@ package middleware
 import (
 	"log"
 
+	"github.com/abdullahalsazib/e-com-auth-golang/helper"
 	"github.com/gin-gonic/gin"
-	"github.com/neerajbg/go-gin-auth/helper"
 )
 
 func Authenticate(c *gin.Context) {

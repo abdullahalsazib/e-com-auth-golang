@@ -1,13 +1,13 @@
 package routes
 
 import (
+	"github.com/abdullahalsazib/e-com-auth-golang/controller"
+	"github.com/abdullahalsazib/e-com-auth-golang/middleware"
 	"github.com/gin-gonic/gin"
-	"github.com/neerajbg/go-gin-auth/controller"
-	"github.com/neerajbg/go-gin-auth/middleware"
 )
 
 func SetupRoutes(r *gin.Engine) {
-
+	r.GET("/test", controller.Test)
 	r.POST("/login", controller.Login)
 	r.POST("/register", controller.Register)
 	// r.GET("/logout", controller.Logout)

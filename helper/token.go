@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/abdullahalsazib/e-com-auth-golang/model"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/neerajbg/go-gin-auth/model"
 )
 
 type CustomClaims struct {
